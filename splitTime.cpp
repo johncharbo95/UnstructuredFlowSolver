@@ -4,6 +4,7 @@
 
 #define days_in_seconds 60*60*24
 #define hours_in_seconds 3600
+
 void splitTime(const int time_elapsed,double* timeArray){
 
     
@@ -24,13 +25,13 @@ void splitTime(const int time_elapsed,double* timeArray){
     
     if(time >= hours_in_seconds){
       if (remainder != 0){
-	hours = remainder * days_in_seconds / hours_in_seconds;
+	difference = remainder * days_in_seconds / hours_in_seconds;
       }
       else{
 	difference = time/hours_in_seconds;
-	hours = floor(difference);
       }
-      remainder = difference - floor(hours);
+      hours = floor(difference);
+      remainder = difference - hours;
     }
     else{
       hours = 0;
@@ -39,15 +40,14 @@ void splitTime(const int time_elapsed,double* timeArray){
 
     if(time >= 60){
       if(remainder !=0){
-	minutes = remainder / 60 * hours_in_seconds;
+	difference = remainder / 60 * hours_in_seconds;
       }
       else{
 	difference = time/60;
-	minutes = floor(difference);
       }
-      remainder = difference - floor(minutes);
-      seconds = remainder * 60;
-      seconds = floor(seconds);
+      minutes = floor(difference);
+      remainder = difference - minutes;
+      seconds = floor(remainder * 60);
     }
     else{
       minutes = 0;
